@@ -81,7 +81,7 @@ Rhombus& Rhombus::operator=(const Rhombus &r) {
 /// @return true if the two objects have the same width and the same length  
 bool Rhombus::operator==(const Rhombus &r) { 
 
-	if (r.diagL == diagL && r.diagS == diagS)
+	if (r.diagL == diagL && r.diagS == diagS && tarea->size == r.tarea->size && tarea->string == r.tarea->string)
 		return true;
 		
 	return false;
@@ -238,14 +238,9 @@ void Rhombus::Dump() {
 /// @brief to draw a rhombus
 void Rhombus::Drawing() {
 	
-	float a = GetArea();
-	float p = GetPerimeter();
-	unsigned int s = tarea->size;
-	char* t = tarea->string;
-	cout << "sto disegnando un rombo con scritto" << &t << "con:" << endl;
-	cout << "Area: " << a << endl;
-	cout << "Perimetro: " << p << endl;
-	cout << "Grandezza: " << s << endl;
+	cout << "il rombo disegnato ha area: " << GetArea() << endl;
+	cout << "ha perimetro: " << GetPerimeter() << endl;
+	cout << "viene usato il font " << tarea->string << "con grandezza " << tarea->size << endl;
 }
 
 

@@ -80,7 +80,7 @@ Rectangle& Rectangle::operator=(const Rectangle &r) {
 /// @return true if the two objects have the same width and the same length  
 bool Rectangle::operator==(const Rectangle &r) { 
 
-	if (r.width == width && r.height == height)
+	if (r.width == width && r.height == height && r.tarea->size == tarea->size && r.tarea->string == tarea->string)
 		return true;
 		
 	return false;
@@ -196,14 +196,9 @@ void Rectangle::ErrorMessage(const char *string) {
 /// @brief to draw a rectangle
 void Rectangle::Drawing() {
 	
-	float a = GetArea();
-	float p = GetPerimeter();
-	unsigned int s = tarea->size;
-	char* t = tarea->string;
-	cout << "sto disegnando un rettangolo con scritto" << &t << "con:" << endl;
-	cout << "Area: " << a << endl;
-	cout << "Perimetro: " << p << endl;
-	cout << "Grandezza: " << s << endl;
+	cout << "il rombo disegnato ha area: " << GetArea() << endl;
+	cout << "ha perimetro: " << GetPerimeter() << endl;
+	cout << "viene usato il font " << tarea->string << "con grandezza " << tarea->size << endl;
 }
 
 /// @brief write a warning message 

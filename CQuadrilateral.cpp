@@ -7,7 +7,7 @@ Quadrilateral::Quadrilateral() {
 	cout << "Quadrilateral - constructor - default" << endl;
 
 	Init();
-
+	
 } 
 
 /// @brief constructor 
@@ -15,8 +15,18 @@ Quadrilateral::Quadrilateral() {
 Quadrilateral::Quadrilateral(TextArea ta) {
 
 	cout << "Quadrilateral - constructor - textarea" << endl;
-
-	Init();
+	if (ta.size <= 0)
+	{
+		WarningMessage("constructor: font size should be > 0");
+		Init();
+	}
+	else
+	{
+		Init();
+		tarea->size = ta.size;
+		tarea->string[SLEN] = ta.string[SLEN];
+	}
+	
 } 
 
 /// @brief copy constructor 
@@ -68,6 +78,11 @@ Quadrilateral& Quadrilateral::operator=(const Quadrilateral &o) {
 /// @return always false 
 bool Quadrilateral::operator==(const Quadrilateral &o) {
 
+	if (sides[0] == o.sides[0] && sides[1] == o.sides[1] && sides[2] == o.sides[2] && sides[3] == o.sides[3])
+	{
+		if (tarea->size == o.tarea->size && tarea->string == o.tarea->string)
+			return true;
+	}
 	return false;
 }
 
@@ -75,15 +90,15 @@ bool Quadrilateral::operator==(const Quadrilateral &o) {
 /// @brief default initialization of the object
 void Quadrilateral::Init() {
 	
-	
-	
 	SetSides(0.,0.,0.,0.);
-		
+	tarea = new TextArea;
+	tarea->size = 0;
+	tarea->string[SLEN] = NULL;
 }
 
 
 /// @brief initialization of the object as a copy of an object 
-/// @param r reference to the object that should be copied 
+/// @param o reference to the object that should be copied 
 void Quadrilateral::Init(const Quadrilateral &o) {
 	Reset();
 	Init();
@@ -91,7 +106,8 @@ void Quadrilateral::Init(const Quadrilateral &o) {
 	sides[1] = o.sides[1]; 
 	sides[2] = o.sides[2]; 
 	sides[3] = o.sides[3];
-	
+	tarea->size = o.tarea->size;
+	tarea->string[SLEN] = o.tarea->string[SLEN];
 	
 }
 
