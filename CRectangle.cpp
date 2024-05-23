@@ -41,6 +41,24 @@ Rectangle::Rectangle(float w, float h) {
 /// @param sf struct of type Format
 Rectangle::Rectangle(float w, float h, TextArea ta) {
 
+	Init();
+	cout << "Rectangle - constructor" << endl;
+
+	if (w <= 0. || h <= 0.) {
+		WarningMessage("constructor: width and height should be > 0");
+		SetDim(0, 0);
+	}
+	else
+		SetDim(w, h);
+	if (ta.size <= 0)
+	{
+		WarningMessage("constructor: font size should be > 0");
+	}
+	else
+	{
+		tarea->size = ta.size;
+		strcpy_s(tarea->string, ta.string);
+	}
 	
 }
 
@@ -88,8 +106,9 @@ bool Rectangle::operator==(const Rectangle &r) {
 
 /// @brief default initialization of the object
 void Rectangle::Init() {
+
 	SetDim(0,0);
-	
+	Quadrilateral::Init();
 }
 
 
@@ -99,6 +118,8 @@ void Rectangle::Init(const Rectangle &r) {
 	
 	Init();
 	SetDim(r.width,r.height);
+	tarea->size = r.tarea->size;
+	strcpy_s(tarea->string, r.tarea->string);
 	
 }
 
@@ -106,7 +127,7 @@ void Rectangle::Init(const Rectangle &r) {
 void Rectangle::Reset() {
 	
 	SetDim(0,0);
-	
+	Quadrilateral::Reset();
 }
 
 
@@ -196,9 +217,10 @@ void Rectangle::ErrorMessage(const char *string) {
 /// @brief to draw a rectangle
 void Rectangle::Drawing() {
 	
-	cout << "il rombo disegnato ha area: " << GetArea() << endl;
+	cout << endl;
+	cout << "il rettangolo disegnato ha area: " << GetArea() << endl;
 	cout << "ha perimetro: " << GetPerimeter() << endl;
-	cout << "viene usato il font " << tarea->string << "con grandezza " << tarea->size << endl;
+	cout << "viene usato il font " << tarea->string << " con grandezza " << tarea->size << endl;
 }
 
 /// @brief write a warning message 

@@ -24,7 +24,7 @@ Quadrilateral::Quadrilateral(TextArea ta) {
 	{
 		Init();
 		tarea->size = ta.size;
-		tarea->string[SLEN] = ta.string[SLEN];
+		strcpy_s(tarea->string, ta.string);
 	}
 	
 } 
@@ -91,9 +91,10 @@ bool Quadrilateral::operator==(const Quadrilateral &o) {
 void Quadrilateral::Init() {
 	
 	SetSides(0.,0.,0.,0.);
+	char t[] = "default";
 	tarea = new TextArea;
 	tarea->size = 0;
-	tarea->string[SLEN] = NULL;
+	strcpy_s(tarea->string, t);
 }
 
 
@@ -107,7 +108,7 @@ void Quadrilateral::Init(const Quadrilateral &o) {
 	sides[2] = o.sides[2]; 
 	sides[3] = o.sides[3];
 	tarea->size = o.tarea->size;
-	tarea->string[SLEN] = o.tarea->string[SLEN];
+	strcpy_s(tarea->string, o.tarea->string);
 	
 }
 
@@ -185,7 +186,7 @@ void Quadrilateral::SetTextArea(TextArea ta) {
 /// @param text the text 
 void Quadrilateral::SetText(char* text) {
 
-	*tarea->string = *text;
+	strcpy_s(tarea->string, text);
 }
 
 /// @brief set the font size of the text area 

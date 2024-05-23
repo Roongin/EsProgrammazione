@@ -41,8 +41,25 @@ Rhombus::Rhombus(float dL, float dS) {
 /// @param ta struct of type TextArea
 Rhombus::Rhombus(float dL, float dS, TextArea ta) {
 
+	Init();
 
+	cout << "Rhombus - constructor" << endl;
 
+	if (dL <= 0. || dS <= 0.) {
+		WarningMessage("constructor: diagonals should be > 0");
+		SetDim(0, 0);
+	}
+	else
+		SetDim(dL, dS);
+	if (ta.size <= 0)
+	{
+		WarningMessage("constructor: font size should be > 0");
+	}
+	else
+	{
+		tarea->size = ta.size;
+		strcpy_s(tarea->string, ta.string);
+	}
 }
 
 /// @brief destructor 
@@ -90,7 +107,7 @@ bool Rhombus::operator==(const Rhombus &r) {
 /// @brief default initialization of the object
 void Rhombus::Init() {
 	SetDim(0,0);
-	
+	Quadrilateral::Init();
 }
 
 
@@ -100,6 +117,8 @@ void Rhombus::Init(const Rhombus &r) {
 		
 	Init();
 	SetDim(r.diagL,r.diagS);
+	tarea->size = r.tarea->size;
+	strcpy_s(tarea->string, r.tarea->string);
 	
 }
 
@@ -107,7 +126,7 @@ void Rhombus::Init(const Rhombus &r) {
 void Rhombus::Reset() {
 	
 	SetDim(0,0);
-	
+	Quadrilateral::Reset();
 }
 
 
@@ -238,9 +257,10 @@ void Rhombus::Dump() {
 /// @brief to draw a rhombus
 void Rhombus::Drawing() {
 	
+	cout << endl;
 	cout << "il rombo disegnato ha area: " << GetArea() << endl;
 	cout << "ha perimetro: " << GetPerimeter() << endl;
-	cout << "viene usato il font " << tarea->string << "con grandezza " << tarea->size << endl;
+	cout << "viene usato il font " << tarea->string << " con grandezza " << tarea->size << endl;
 }
 
 
