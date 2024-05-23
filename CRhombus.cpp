@@ -71,7 +71,7 @@ Rhombus::~Rhombus() {
 }
 
 /// @brief copy constructor 
-/// @param o reference to the object that should be copied 
+/// @param r reference to the object that should be copied 
 Rhombus::Rhombus(const Rhombus &r) { 
 
 	cout << "Rhombus - copy constructor" << endl;
@@ -81,7 +81,7 @@ Rhombus::Rhombus(const Rhombus &r) {
 }
 
 /// @brief overload of operator = 
-/// @param o reference to the object on the right side of the operator 
+/// @param r reference to the object on the right side of the operator 
 /// @return reference to the object on the left side of the operator 
 Rhombus& Rhombus::operator=(const Rhombus &r) { 
 
@@ -95,7 +95,7 @@ Rhombus& Rhombus::operator=(const Rhombus &r) {
 
 /// @brief overload of operator == 
 /// @param r reference to the object on the right side of the operator 
-/// @return true if the two objects have the same width and the same length  
+/// @return true if the two objects have the same diagonals, the same text in them and the same font size  
 bool Rhombus::operator==(const Rhombus &r) { 
 
 	if (r.diagL == diagL && r.diagS == diagS && tarea->size == r.tarea->size && tarea->string == r.tarea->string)
@@ -131,7 +131,7 @@ void Rhombus::Reset() {
 
 
 /// @brief set longer diagonal of the object
-/// @param d diagonal 
+/// @param d diagonal (longer)
 void Rhombus::SetDiagL(float d) {
 
 	if (d < 0.) {
@@ -144,7 +144,7 @@ void Rhombus::SetDiagL(float d) {
 } 
 
 /// @brief set shorter diagonal of the object
-/// @param d diagonal 
+/// @param d diagonal (shorter)
 void Rhombus::SetDiagS(float d) {
 
 	if (d < 0.) {
@@ -254,13 +254,15 @@ void Rhombus::Dump() {
 }
 
 
-/// @brief to draw a rhombus
+/// @brief to draw a rhombus with informations about it
 void Rhombus::Drawing() {
 	
 	cout << endl;
-	cout << "il rombo disegnato ha area: " << GetArea() << endl;
+	cout << "il rombo disegnato ha digonali: " << diagL << " " << diagS << endl;
+	cout << "ha area: " << GetArea() << endl;
 	cout << "ha perimetro: " << GetPerimeter() << endl;
-	cout << "viene usato il font " << tarea->string << " con grandezza " << tarea->size << endl;
+	cout << "dentro ha scritto " << tarea->string << " con grandezza " << tarea->size << endl;
+	cout << endl;
 }
 
 

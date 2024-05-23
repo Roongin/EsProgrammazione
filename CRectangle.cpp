@@ -38,7 +38,7 @@ Rectangle::Rectangle(float w, float h) {
 /// @brief constructor 
 /// @param w width of the rectangle
 /// @param h height of the rectangle 
-/// @param sf struct of type Format
+/// @param ta struct of type Textarea
 Rectangle::Rectangle(float w, float h, TextArea ta) {
 
 	Init();
@@ -71,7 +71,7 @@ Rectangle::~Rectangle() {
 }
 
 /// @brief copy constructor 
-/// @param o reference to the object that should be copied 
+/// @param r reference to the object that should be copied 
 Rectangle::Rectangle(const Rectangle &r) { 
 
 	cout << "Rectangle - copy constructor" << endl;
@@ -81,7 +81,7 @@ Rectangle::Rectangle(const Rectangle &r) {
 }
 
 /// @brief overload of operator = 
-/// @param o reference to the object on the right side of the operator 
+/// @param r reference to the object on the right side of the operator 
 /// @return reference to the object on the left side of the operator 
 Rectangle& Rectangle::operator=(const Rectangle &r) { 
 
@@ -95,7 +95,7 @@ Rectangle& Rectangle::operator=(const Rectangle &r) {
 
 /// @brief overload of operator == 
 /// @param r reference to the object on the right side of the operator 
-/// @return true if the two objects have the same width and the same length  
+/// @return true if the two objects have the same width, the same length, the same text and the same font size
 bool Rectangle::operator==(const Rectangle &r) { 
 
 	if (r.width == width && r.height == height && r.tarea->size == tarea->size && r.tarea->string == tarea->string)
@@ -144,7 +144,7 @@ void Rectangle::SetWidth(float w) {
 
 }
 
-/// @brief set length of the object
+/// @brief set height of the object
 /// @param h height 
 void Rectangle::SetHeight(float h) {
 
@@ -167,7 +167,7 @@ float Rectangle::GetWidth() {
 
 }
 
-/// @brief get length of the object
+/// @brief get height of the object
 /// @return height
 float Rectangle::GetHeight() {
 
@@ -186,7 +186,7 @@ void Rectangle::SetDim(float w, float h) {
 	return;
 }
 
-/// @brief get width and length of the object
+/// @brief get width and height of the object
 /// @param w width 
 /// @param h height
 void Rectangle::GetDim(float &w, float &h) {
@@ -214,13 +214,15 @@ void Rectangle::ErrorMessage(const char *string) {
 
 }
 
-/// @brief to draw a rectangle
+/// @brief to draw a rectangle with a text in it and a chosen font size 
 void Rectangle::Drawing() {
 	
 	cout << endl;
-	cout << "il rettangolo disegnato ha area: " << GetArea() << endl;
+	cout << "il rettangolo disegnato ha lati: " << width << " " << height << endl;
+	cout << "ha area: " << GetArea() << endl;
 	cout << "ha perimetro: " << GetPerimeter() << endl;
-	cout << "viene usato il font " << tarea->string << " con grandezza " << tarea->size << endl;
+	cout << "dentro ha scritto " << tarea->string << " con grandezza " << tarea->size << endl;
+	cout << endl;
 }
 
 /// @brief write a warning message 
